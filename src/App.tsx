@@ -28,7 +28,16 @@ class App extends React.Component<Props, State> {
                 {json && (
                     <>
                         <hr />
-                        <pre>{new InterfaceGenerator(json).toString()}</pre>
+                        <pre
+                            style={{
+                                width: '100%',
+                                background: 'black',
+                                color: 'white',
+                                textAlign: 'left',
+                            }}
+                        >
+                            {new InterfaceGenerator(json).toString()}
+                        </pre>
                     </>
                 )}
             </div>

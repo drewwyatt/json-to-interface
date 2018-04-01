@@ -5,10 +5,11 @@ class InterfaceGenerator {
     constructor(public input: object) {}
 
     toString(): string {
-        return `interface Foo {
-            ${this.props.map(([k, v]) => `${k}: ${v}`).join('\n')}
-        }
-        `
+        return [
+            'interface Foo {',
+            ...this.props.map(([k, v]) => `    ${k}: ${v}`),
+            '}',
+        ].join('\n')
     }
 
     get props(): ReadonlyArray<ObjectKeyType> {
