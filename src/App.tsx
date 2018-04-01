@@ -1,6 +1,6 @@
 import * as React from 'react'
-import JSONField from './components/json-field'
 import './App.css'
+import { JSONField } from './components'
 
 const logo = require('./logo.svg')
 
@@ -12,7 +12,8 @@ class App extends React.Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <JSONField />
+                {/* tslint:disable-next-line:no-console */}
+                <JSONField onValidJSON={obj => console.log(obj)} />
             </div>
         )
     }

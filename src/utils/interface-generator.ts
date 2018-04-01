@@ -1,0 +1,3 @@
+class InterfaceGenerator {}
+
+export { InterfaceGenerator }

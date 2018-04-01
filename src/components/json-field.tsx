@@ -1,17 +1,9 @@
 import * as React from 'react'
+import { AcceptedInput, ParseStatus, ParseStatusCode } from '../models'
 
-interface ParseStatus {
-    code: ParseStatusCode
-    message: string
+interface Props {
+    onValidJSON(parsedJSON: AcceptedInput): void
 }
-
-enum ParseStatusCode {
-    notParsed,
-    ok,
-    error,
-}
-
-interface Props {}
 
 interface State {
     json: string
@@ -54,10 +46,11 @@ class JSONField extends React.Component<Props, State> {
 
     private tryParseJSON = () => {
         try {
-            JSON.parse(this.state.json)
+            const parsedJSON = JSON.parse(this.state.json)
             this.setState({
                 parseStatus: { code: ParseStatusCode.ok, message: '' },
             })
+            this.props.onValidJSON(parsedJSON)
         } catch (err) {
             this.setState({
                 parseStatus: {
@@ -69,4 +62,4 @@ class JSONField extends React.Component<Props, State> {
     }
 }
 
-export default JSONField
+export { JSONField }

@@ -1,24 +1,27 @@
 {
-  "name": "json-to-interface",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "prettier": "^1.11.1",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
-    "react-scripts-ts": "2.14.0"
-  },
-  "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  },
-  "devDependencies": {
-    "@types/jest": "^22.2.2",
-    "@types/node": "^9.6.1",
-    "@types/react": "^16.1.0",
-    "@types/react-dom": "^16.0.4",
-    "typescript": "^2.8.1"
-  }
+    "name": "json-to-interface",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "react": "^16.3.0",
+        "react-dom": "^16.3.0",
+        "react-scripts-ts": "2.14.0"
+    },
+    "scripts": {
+        "start": "react-scripts-ts start",
+        "build": "react-scripts-ts build",
+        "test": "react-scripts-ts test --env=jsdom",
+        "eject": "react-scripts-ts eject",
+        "generate-barrels": "barrelsby -c barrelsby.json && npm run prettify",
+        "prettify": "prettier --write \"./src/**/*.{ts,tsx,css,js,json}\""
+    },
+    "devDependencies": {
+        "@types/jest": "^22.2.2",
+        "@types/node": "^9.6.1",
+        "@types/react": "^16.1.0",
+        "@types/react-dom": "^16.0.4",
+        "barrelsby": "^0.0.8",
+        "prettier": "^1.11.1",
+        "typescript": "^2.8.1"
+    }
 }
