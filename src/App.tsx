@@ -1,68 +1,20 @@
 import * as React from 'react';
+import JSONField from './components/json-field';
 import './App.css';
 
 const logo = require('./logo.svg');
 
-interface ParseStatus {
-  code: ParseStatusCode;
-  message: string;
-}
-
-enum ParseStatusCode {
-  notParsed,
-  ok,
-  error
-}
-
-interface Props {}
-
-interface State {
-  json: string;
-  parseStatus: ParseStatus;
-}
-
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      json: '',
-      parseStatus: {
-        code: ParseStatusCode.notParsed,
-        message: '',
-      }
-    };
-  }
+class App extends React.Component {
   render() {
-    const { json, parseStatus: { code, message } } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <textarea 
-          style={{ 
-            borderColor: code === ParseStatusCode.error ? 'red' : 'black' }} 
-          onChange={this.onJSONUpdate} 
-          value={json} 
-        />
-        <p>{message}</p>
+        <JSONField />
       </div>
     );
-  }
-
-  private onJSONUpdate = ({ target: { value: json } }: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ json }, this.tryParseJSON);
-  }
-
-  private tryParseJSON = () => {
-    try {
-      JSON.parse(this.state.json);
-      this.setState({ 
-        parseStatus: { code: ParseStatusCode.ok, message: '' } });
-    } catch (err) {
-      this.setState({ parseStatus: { code: ParseStatusCode.error, message: (err as Error).message } });
-    }
   }
 }
 
